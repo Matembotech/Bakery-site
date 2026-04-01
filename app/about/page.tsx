@@ -1,0 +1,4 @@
+// About Page
+export default function AboutPage() {
+  return null;
+}
