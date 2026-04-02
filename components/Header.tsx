@@ -3,22 +3,23 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Products", href: "#products" },
-  { name: "Gallery", href: "#gallery" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Products", href: "/products" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "#contact" },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("Home");
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +28,11 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Optional: Scroll to top instantly after navigation
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
 
   // Prevent scroll when mobile menu is open
   useEffect(() => {
@@ -40,8 +46,7 @@ export default function Header() {
     };
   }, [isMobileMenuOpen]);
 
-  const handleLinkClick = (name: string) => {
-    setActiveSection(name);
+  const handleMobileLinkClick = () => {
     setIsMobileMenuOpen(false);
   };
 
@@ -55,14 +60,13 @@ export default function Header() {
         {/* Left: Logo and Name */}
         <Link
           href="/"
-          onClick={() => setActiveSection("Home")}
           className="flex items-center gap-3 z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-lg"
         >
           {/* Logo placeholder, expecting /logo.png in public folder */}
           <div className="relative w-10 h-10 flex-shrink-0">
             {/* <Image
               src="/logo.png"
-              alt="Jeje Bakery"
+              alt="Jeje Cake Bakery"
               fill
               className="object-contain"
               sizes="40px"
@@ -70,7 +74,7 @@ export default function Header() {
             /> */}
           </div>
           <span className="font-heading font-semibold text-neutral-heading text-xl md:text-2xl tracking-tight">
-            Jeje Bakery
+            Jeje <span className="text-brand-pink font-bold italic drop-shadow-sm">Cake</span> Bakery
           </span>
         </Link>
 
@@ -79,32 +83,24 @@ export default function Header() {
           className="hidden md:flex items-center gap-8"
           aria-label="Main Navigation"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => handleLinkClick(link.name)}
-              className="relative py-2 text-neutral-body hover:text-brand-pink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-md transition-colors"
-            >
-              <span
-                className={`transition-colors duration-200 ${
-                  activeSection === link.name
-                    ? "text-brand-deep font-medium"
-                    : ""
+          {navLinks.map((link) => {
+            // Precise active logic matching
+            const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== "/");
+
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`relative py-2 text-neutral-body focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-md transition-all ${
+                  isActive 
+                    ? "text-brand-deep font-medium border-b-2 border-accent-gold" 
+                    : "hover:text-brand-pink"
                 }`}
               >
-                {link.name}
-              </span>
-              {activeSection === link.name && (
-                <motion.div
-                  layoutId="activeNavIndicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-deep rounded-full"
-                  initial={false}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-            </Link>
-          ))}
+                <span>{link.name}</span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right: Desktop Order Button */}
@@ -144,20 +140,23 @@ export default function Header() {
               className="flex flex-col gap-2 flex-grow"
               aria-label="Mobile Navigation"
             >
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => handleLinkClick(link.name)}
-                  className={`text-2xl font-heading font-medium tracking-wide py-4 border-b border-neutral-border transition-colors focus:outline-none focus:ring-2 focus:ring-brand-pink rounded-lg px-2 ${
-                    activeSection === link.name
-                      ? "text-brand-deep"
-                      : "text-neutral-heading hover:text-brand-pink"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== "/");
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={handleMobileLinkClick}
+                    className={`text-2xl font-heading font-medium tracking-wide py-4 border-b transition-colors focus:outline-none focus:ring-2 focus:ring-brand-pink rounded-lg px-2 ${
+                      isActive
+                        ? "text-brand-deep border-accent-gold"
+                        : "text-neutral-heading hover:text-brand-pink border-neutral-border"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </nav>
 
             <div className="pb-12 pt-6">

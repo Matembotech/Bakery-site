@@ -14,9 +14,11 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Jeje Bakery",
+  title: "Jeje Cake Bakery",
   description: "Premium bakery website",
 };
+
+import WhatsAppCTA from "@/components/WhatsAppCTA";
 
 export default function RootLayout({
   children,
@@ -30,6 +32,7 @@ export default function RootLayout({
     >
       <body className="font-sans text-neutral-body bg-neutral-cream min-h-full flex flex-col">
         {children}
+        <WhatsAppCTA />
       </body>
     </html>
   );
