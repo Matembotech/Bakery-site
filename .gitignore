@@ -16,12 +16,12 @@
 # next.js
 /.next/
 /out/
-
-# production
 /build
 
 # misc
 .DS_Store
+Thumbs.db
+desktop.ini
 *.pem
 
 # debug
@@ -29,9 +29,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.DS_Store
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!.env.template
 
 # vercel
 .vercel
@@ -39,3 +42,99 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# temporary files
+*.tmp
+*.temp
+*.log
+
+# build outputs
+dist/
+dist-ssr/
+*.local
+
+# playwright
+/playwright-report/
+/test-results/
+
+# cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# react-native
+*.metro-bundler-cache-*
+
+# media files that shouldn't be in repo (upload locally)
+/public/uploads/
+/public/images/local/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.svg
+!public/next.svg
+!public/file.svg
+!public/globe.svg
+!public/window.svg
+!public/vercel.svg
+
+# config files with sensitive data
+/config/local.ts
+/config/secrets.ts
+/credentials.json
+/secrets.json
+
+# linting cache
+.eslintcache
+
+# stylelint cache
+.stylelintcache
+
+# parcel
+.cache
+.parcel-cache
+
+# turbo
+/.turbo
+
+# database
+*.sqlite
+*.db
+
+# docker
+docker-compose.override.yml
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# Backup files
+*.bak
+*.backup

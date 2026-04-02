@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { images } from "@/lib/images";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -22,7 +24,7 @@ export default function About() {
           >
             <div className="relative aspect-[4/5] w-full max-w-[500px] mx-auto md:ml-0 rounded-[2rem] overflow-hidden shadow-2xl shadow-brand-pink/20 group">
               <Image
-                src="/fallback images/pic1.jpeg"
+                src={images.about.main}
                 alt="Jeje Cake Bakery Chef creating a masterpiece"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -49,8 +51,8 @@ export default function About() {
               About <span className="text-brand-deep">Jeje Cake Bakery</span>
             </h2>
             <p className="font-sans text-lg text-neutral-body leading-relaxed mb-6">
-              Jeje Cake Bakery was born out of a profound love for creating sweet
-              moments. What started as a small family kitchen endeavor has
+              Jeje Cake Bakery was born out of a profound love for creating
+              sweet moments. What started as a small family kitchen endeavor has
               blossomed into a premium bakery dedicated to crafting
               unforgettable cakes for birthdays, weddings, and special life
               events.
@@ -62,7 +64,7 @@ export default function About() {
             </p>
 
             <div className="flex justify-center md:justify-start">
-              <a
+              <Link
                 href="/about"
                 className="group flex items-center gap-3 text-neutral-heading font-medium hover:text-brand-deep transition-colors focus:outline-none"
               >
@@ -70,7 +72,7 @@ export default function About() {
                 <span className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-soft group-hover:bg-brand-pink group-hover:text-white transition-colors">
                   <ArrowRight size={18} />
                 </span>
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

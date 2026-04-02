@@ -1,62 +1,15 @@
-/* eslint-disable react-hooks/immutability */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { images } from "@/lib/images";
 
-// Mapped mock image data spanning standard PRD categories
-const GALLERY_DATA = [
-  {
-    id: 1,
-    category: "Wedding Cakes",
-    src: "/products/products1.jpg",
-    title: "Classic Wedding Tier",
-  },
-  {
-    id: 2,
-    category: "Birthday Cakes",
-    src: "/products/product2.jpg",
-    title: "Decadent Chocolate Layout",
-  },
-  {
-    id: 3,
-    category: "Custom Cakes",
-    src: "/products/product3.jpg",
-    title: "Vanilla Berry Bliss Layout",
-  },
-  {
-    id: 4,
-    category: "Custom Cakes",
-    src: "/fallback images/pic1.jpeg",
-    title: "Chef Creating",
-  },
-  {
-    id: 5,
-    category: "Wedding Cakes",
-    src: "/fallback images/pic2.jpeg",
-    title: "Triple Wedding Cake",
-  },
-  {
-    id: 6,
-    category: "Birthday Cakes",
-    src: "/fallback images/pic3.jpeg",
-    title: "Birthday Display",
-  },
-  {
-    id: 7,
-    category: "Kitchen Party Cakes",
-    src: "/fallback images/pic4.jpeg",
-    title: "Party Celebration Setup",
-  },
-  {
-    id: 8,
-    category: "Kitchen Party Cakes",
-    src: "/fallback images/chiefcooker.jpeg",
-    title: "Chief Cook Preparation",
-  },
-];
+// Mapped Cloudinary gallery data
+const GALLERY_DATA = images.gallery;
 
 const CATEGORIES = [
   "All",

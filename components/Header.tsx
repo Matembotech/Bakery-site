@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -13,7 +12,7 @@ const navLinks = [
   { name: "Services", href: "/services" },
   { name: "Products", href: "/products" },
   { name: "Gallery", href: "/gallery" },
-  { name: "Contact", href: "#contact" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -74,7 +73,11 @@ export default function Header() {
             /> */}
           </div>
           <span className="font-heading font-semibold text-neutral-heading text-xl md:text-2xl tracking-tight">
-            Jeje <span className="text-brand-pink font-bold italic drop-shadow-sm">Cake</span> Bakery
+            Jeje{" "}
+            <span className="text-brand-pink font-bold italic drop-shadow-sm">
+              Cake
+            </span>{" "}
+            Bakery
           </span>
         </Link>
 
@@ -85,15 +88,17 @@ export default function Header() {
         >
           {navLinks.map((link) => {
             // Precise active logic matching
-            const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== "/");
+            const isActive =
+              pathname === link.href ||
+              (pathname.startsWith(link.href) && link.href !== "/");
 
             return (
               <Link
                 key={link.name}
                 href={link.href}
                 className={`relative py-2 text-neutral-body focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-md transition-all ${
-                  isActive 
-                    ? "text-brand-deep font-medium border-b-2 border-accent-gold" 
+                  isActive
+                    ? "text-brand-deep font-medium border-b-2 border-accent-gold"
                     : "hover:text-brand-pink"
                 }`}
               >
@@ -106,7 +111,7 @@ export default function Header() {
         {/* Right: Desktop Order Button */}
         <div className="hidden md:block">
           <motion.a
-            href="#contact"
+            href="/contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center justify-center bg-brand-pink text-white border-2 border-accent-gold hover:bg-brand-deep rounded-xl px-6 py-2.5 font-medium transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-deep focus:ring-offset-2 focus:ring-offset-neutral-cream"
@@ -141,7 +146,9 @@ export default function Header() {
               aria-label="Mobile Navigation"
             >
               {navLinks.map((link) => {
-                const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== "/");
+                const isActive =
+                  pathname === link.href ||
+                  (pathname.startsWith(link.href) && link.href !== "/");
                 return (
                   <Link
                     key={link.name}

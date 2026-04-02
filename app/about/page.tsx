@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CheckCircle2, Heart, Star, ShieldCheck } from "lucide-react";
+import { images } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "About Jeje Cake Bakery",
@@ -18,17 +19,21 @@ export default function AboutPage() {
       <main className="min-h-screen bg-neutral-cream pt-24 pb-20">
         {/* Section 1: Hero Banner */}
         <section className="relative w-full h-[40vh] md:h-[50vh] min-h-[400px]">
-          <Image
-            src="/fallback/about-cake.webp"
+          {/* <Image
+            src={images.about.main}
             alt="About Jeje Cake Bakery"
             fill
             className="object-cover"
             priority
-          />
+          /> */}
           <div className="absolute inset-0 bg-brand-deep/60 mix-blend-multiply" />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
             <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-md">
-              About Jeje <span className="text-brand-pink italic drop-shadow-lg">Cake</span> Bakery
+              About Jeje{" "}
+              <span className="text-brand-pink italic drop-shadow-lg">
+                Cake
+              </span>{" "}
+              Bakery
             </h1>
             <p className="font-sans text-xl md:text-2xl text-white max-w-2xl drop-shadow-sm opacity-90">
               Crafting sweet moments and unforgettable masterpieces since our
@@ -47,8 +52,8 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg text-neutral-body leading-relaxed md:text-left">
             <p>
-              Jeje Cake Bakery was born out of a profound love for creating sweet
-              moments. What started as a tiny, passionate family kitchen
+              Jeje Cake Bakery was born out of a profound love for creating
+              sweet moments. What started as a tiny, passionate family kitchen
               endeavor rapidly blossomed into a premium dedicated bakery. We
               realized early on that a cake is never just a simple dessert—it is
               the centerpiece of celebration, marking the milestones of life.
@@ -61,8 +66,8 @@ export default function AboutPage() {
               decoration we lay is meticulously planned perfectly.
             </p>
             <p>
-              Today, Jeje Cake Bakery stands as a proud household name for luxury
-              weddings, custom birthday bashes, and corporate events. Our
+              Today, Jeje Cake Bakery stands as a proud household name for
+              luxury weddings, custom birthday bashes, and corporate events. Our
               promise has remained unchanged: to beautifully celebrate your
               events with cakes that taste exactly as stunning directly as they
               look.
@@ -76,7 +81,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div className="relative aspect-[4/5] w-full rounded-[2rem] overflow-hidden shadow-2xl">
                 <Image
-                  src="/fallback/baker.webp"
+                  src={images.about.baker}
                   alt="Head Baker at Jeje Cake Bakery"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-700"
@@ -92,11 +97,11 @@ export default function AboutPage() {
                 </p>
                 <p className="font-sans text-lg text-neutral-body leading-relaxed mb-6">
                   With over a decade of dedicated culinary experience, our
-                  visionary founder established Jeje Cake Bakery strictly aiming to
-                  push the creative boundaries of structural baking. Combining
-                  deep technical expertise forged in premium hotel kitchens with
-                  an innate, raw artistic talent, the philosophy is simple:
-                  perfection requires zero compromises.
+                  visionary founder established Jeje Cake Bakery strictly aiming
+                  to push the creative boundaries of structural baking.
+                  Combining deep technical expertise forged in premium hotel
+                  kitchens with an innate, raw artistic talent, the philosophy
+                  is simple: perfection requires zero compromises.
                 </p>
                 <p className="font-sans text-lg text-neutral-body leading-relaxed font-medium italic text-neutral-heading">
                   &quot;A truly great cake should immediately make someone smile

@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { images } from "@/lib/images";
+import Link from "next/link";
 
 export default function Services() {
   return (
@@ -34,12 +36,12 @@ export default function Services() {
             </p>
 
             <div className="flex justify-center md:justify-start">
-              <a
+              <Link
                 href="/services"
                 className="inline-flex items-center justify-center bg-brand-deep text-white border-none hover:bg-brand-pink rounded-xl px-8 py-3.5 text-lg font-medium transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-pink focus:ring-offset-2 focus:ring-offset-neutral-cream"
               >
                 View Hand-Designed Services
-              </a>
+              </Link>
             </div>
           </motion.div>
 
@@ -52,7 +54,7 @@ export default function Services() {
           >
             <div className="relative aspect-[4/3] md:aspect-square w-full rounded-[2rem] md:rounded-full overflow-hidden shadow-2xl shadow-brand-pink/20 group border-8 border-white">
               <Image
-                src="/fallback images/pic2.jpeg"
+                src={images.services[1].image}
                 alt="Elegant wedding cake service"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -73,7 +75,7 @@ export default function Services() {
           >
             <div className="relative aspect-[4/3] md:aspect-square w-full rounded-[2rem] md:rounded-full overflow-hidden shadow-2xl shadow-brand-pink/20 group border-8 border-white">
               <Image
-                src="/fallback images/pic3.jpeg"
+                src={images.services[0].image}
                 alt="Custom birthday cake service"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -103,7 +105,7 @@ export default function Services() {
             </p>
 
             <div className="flex justify-center md:justify-start">
-              <a
+              <Link
                 href="/services"
                 className="group flex flex-col items-center md:items-start text-neutral-heading font-medium hover:text-brand-deep transition-colors focus:outline-none"
               >
@@ -111,7 +113,7 @@ export default function Services() {
                   <ArrowRight size={24} />
                 </span>
                 <span className="text-lg">Explore Full Services</span>
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

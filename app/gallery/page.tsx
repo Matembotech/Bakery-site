@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import GalleryGrid from "@/components/GalleryGrid";
 
+import { images } from "@/lib/images";
+
 export const metadata: Metadata = {
   title: "Jeje Cake Bakery Gallery",
   description: "Browse beautiful birthday, wedding, and celebration cakes from Jeje Cake Bakery.",
   openGraph: {
     title: "Jeje Cake Bakery Gallery",
     description: "Browse beautiful birthday, wedding, and celebration cakes from Jeje Cake Bakery.",
-    images: [{ url: "/fallback images/pic2.jpeg", width: 1200, height: 630 }],
+    images: [{ url: images.gallery[4].src, width: 1200, height: 630 }],
   },
 };
 

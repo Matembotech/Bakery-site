@@ -3,24 +3,16 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { images } from "@/lib/images";
+import Link from "next/link";
 
-const products = [
-  {
-    title: "Classic Wedding Tier",
-    category: "Wedding Cakes",
-    image: "/products/products1.jpg",
-  },
-  {
-    title: "Decadent Chocolate",
-    category: "Birthday Cakes",
-    image: "/products/product2.jpg",
-  },
-  {
-    title: "Vanilla Berry Bliss",
-    category: "Custom Orders",
-    image: "/products/product3.jpg",
-  },
-];
+const products = images.products
+  .map((p) => ({
+    title: p.name,
+    category: "Premium Selection", // Or map based on name if needed
+    image: p.image,
+  }))
+  .slice(0, 3); // Showing first 3 for homepage preview
 
 export default function Products() {
   return (
@@ -85,16 +77,15 @@ export default function Products() {
             </motion.div>
           ))}
         </div>
-        
+
         <div className="mt-16 md:mt-20 flex justify-center">
-           <a 
-              href="/products" 
-              className="inline-flex items-center justify-center bg-transparent text-brand-deep border-2 border-brand-deep hover:bg-brand-deep hover:text-white rounded-[12px] px-10 py-3.5 text-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-deep"
-           >
-              View Full Collection
-           </a>
+          <Link
+            href="/products"
+            className="inline-flex items-center justify-center bg-transparent text-brand-deep border-2 border-brand-deep hover:bg-brand-deep hover:text-white rounded-[12px] px-10 py-3.5 text-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-deep"
+          >
+            View Full Collection
+          </Link>
         </div>
-        
       </div>
     </section>
   );
