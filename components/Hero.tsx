@@ -8,13 +8,28 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Cookie, Cake } from "lucide-react";
 
 const FRAME_COUNT = 224;
+
+// Bakery-themed welcome messages that rotate during loading
+const WELCOME_MESSAGES = [
+  "Welcome to Jeje Bakery...",
+  "Freshly baked moments coming right up!",
+  "Our ovens are working hard for you...",
+  "Kneading some patience, just for you!",
+  "Whipping up something sweet...",
+  "Sifting through the best ingredients...",
+  "Almost as sweet as you'll look with our cakes!",
+  "Baking happiness, one layer at a time...",
+  "Your sweet desires are our priority!",
+  "Just a sprinkle more of loading magic...",
+];
 
 export default function Hero() {
   const [loadedImages, setLoadedImages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [messageIndex, setMessageIndex] = useState(0);
 
   // Memoized images array to prevent unnecessary re-renders of the array ref
   const images = useMemo(() => {
@@ -28,6 +43,17 @@ export default function Hero() {
     }
     return imgArray;
   }, []);
+
+  // Rotate welcome messages while loading
+  useEffect(() => {
+    if (!isLoading) return;
+
+    const messageInterval = setInterval(() => {
+      setMessageIndex((prev) => (prev + 1) % WELCOME_MESSAGES.length);
+    }, 3000); // Change message every 3 seconds
+
+    return () => clearInterval(messageInterval);
+  }, [isLoading]);
 
   useEffect(() => {
     let loadedCount = 0;
@@ -215,10 +241,42 @@ export default function Hero() {
             }}
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-brand-soft"
           >
-            <div className="w-16 h-16 border-4 border-brand-pink/30 border-t-brand-pink rounded-full animate-spin mb-6" />
-            <h2 className="font-heading text-neutral-heading text-2xl mb-4 font-semibold tracking-tight">
-              Preparing Sequence...
-            </h2>
+            {/* Decorative bakery icons */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <motion.div
+                animate={{ rotate: [0, 15, 0] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              >
+                <Cookie size={40} className="text-brand-pink" />
+              </motion.div>
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              >
+                <Cake size={48} className="text-accent-gold" />
+              </motion.div>
+              <motion.div
+                animate={{ rotate: [0, -15, 0] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              >
+                <Cookie size={40} className="text-brand-pink" />
+              </motion.div>
+            </div>
+
+            {/* Rotating welcome messages */}
+            <motion.div
+              key={messageIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="mb-6"
+            >
+              <h2 className="font-heading text-neutral-heading text-xl md:text-2xl text-center font-semibold tracking-tight">
+                {WELCOME_MESSAGES[messageIndex]}
+              </h2>
+            </motion.div>
+
             <div className="w-64 max-w-[80vw] h-2 bg-brand-pink/20 rounded-full overflow-hidden">
               <div
                 className="h-full bg-brand-pink transition-all duration-150 ease-out"
